@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>This is main page</title>
+</head>
+<body>
+<h1>Please select a user id and press button</h1>
+<label>User ID: </label>
+<input type="number" id="user_id" value="1">
+<input type="button"  onclick="user()" value="Search for user" ><br/>
+<label>Album ID: </label>
+<input type="number" id="album_id" value="1">
+<input type="button"  onclick="album()" value="Search for album" ><br/>
+
+
+</body>
+<script>
+          function user(){
+          var id =document.getElementById("user_id").value;
+          window.open("http://localhost:8080/user/"+id, "_self");
+          }
+          function album(){
+          var id =document.getElementById("album_id").value;
+          window.open("http://localhost:8080/albums/"+id, "_self");
+          }
+</script>
+</html>

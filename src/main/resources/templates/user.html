@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User page</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<input type="button"  onclick="location.href='http://localhost:8080/main'" value="Go to the main page"><br/>
+<h1>User details</h1>
+<div class = "main_container">
+    <div class="row">
+        <div class="left">User Id:</div>
+        <div class="left" th:text="${user1.id}"></div>
+    </div>
+
+    <div class="row">
+        <div class="left">Name: </div>
+        <div class="left" th:text="${user1.name}"></div>
+    </div>
+
+    <div class="row">
+        <div class="left">Email: </div>
+        <div class="left" th:text="${user1.email}"></div>
+    </div>
+
+    <div class="row">
+        <div class="left">Address: </div>
+        <div class="left"
+             th:text="${address1.street + ', ' + address1.suite + ', ' + address1.city + ', ' + address1.zipcode}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="left">Geo: </div>
+        <div class="left" th:text="${geo1.lat + ', ' + geo1.lng}"></div>
+    </div>
+
+    <div class="row">
+        <div class="left">Company: </div>
+        <div class="left" th:text="${company1.name + ', ' + company1.bs}"></div>
+    </div>
+</div>
+
+</body>
+</html>
