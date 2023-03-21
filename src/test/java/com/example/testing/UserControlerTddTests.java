@@ -17,7 +17,6 @@ public class UserControlerTddTests {
 
     @Test
     public void showMainPage() throws Exception {
-
         ResponseEntity<User> userControllerResponseEntity = testRestTemplate.getForEntity("/main", User.class);
         assertThat(userControllerResponseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
