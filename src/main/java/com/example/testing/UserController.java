@@ -17,7 +17,7 @@ public class UserController {
     }
 
     @RequestMapping("/user/{id}")
-    private ModelAndView getUser(@PathVariable Integer id, Model model)   {
+    ModelAndView getUser(@PathVariable Integer id, Model model)   {
         String uri = "https://jsonplaceholder.typicode.com/users/" + id;
         RestTemplate restTemplate = new RestTemplate();
 
