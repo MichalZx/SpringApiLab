@@ -1,5 +1,8 @@
 package com.example.testing;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -57,6 +60,36 @@ public class UserController {
         System.out.println(album[0].getUserId());
         System.out.println(al1.getTitle());
         return modelAndView;
+    }
+
+    @PostMapping("/addUser") //dodajmy urzytkownika
+    public String addUser(@RequestParam("name") String name,
+                          @RequestParam("email") String email,
+                          @RequestParam("phone") String phone) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        User user = new User();
+        user.setName(name);
+        user.setEmail(email);
+        user.setPhone(phone);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<User> request = new HttpEntity<>(user, headers);
+
+        String uri = "https://jsonplaceholder.typicode.com/users";
+        restTemplate.postForEntity(uri, request, String.class);
+
+        return "redirect:/users";
+    }
+
+    @GetMapping("/users")
+    public String getUsersList(Model model) {
+        String uri = "https://jsonplaceholder.typicode.com/users";
+        RestTemplate restTemplate = new RestTemplate();
+        User[] users = restTemplate.getForObject(uri, User[].class);
+        model.addAttribute("users", users);
+        return "users";
     }
 
 /*
