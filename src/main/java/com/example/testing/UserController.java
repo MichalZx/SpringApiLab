@@ -1,13 +1,13 @@
 package com.example.testing;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
+
+import java.util.Collections;
 
 @Controller
 public class UserController {
@@ -63,23 +63,29 @@ public class UserController {
     }
 
     @PostMapping("/addUser") //dodajmy urzytkownika
-    public String addUser(@RequestParam("name") String name,
-                          @RequestParam("email") String email,
-                          @RequestParam("phone") String phone) {
+    public String addUser(@ModelAttribute("user") User user) {
         RestTemplate restTemplate = new RestTemplate();
 
-        User user = new User();
-        user.setName(name);
-        user.setEmail(email);
-        user.setPhone(phone);
+        /*
+        User myuser = new User();
+        myuser=user;
+*/
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         HttpEntity<User> request = new HttpEntity<>(user, headers);
 
         String uri = "https://jsonplaceholder.typicode.com/users";
-        restTemplate.postForEntity(uri, request, String.class);
-
+        ResponseEntity<String> response = restTemplate.postForEntity(uri, request, String.class);
+        //restTemplate.postForEntity(uri, request, String.class);
+        if (response.getStatusCode() == HttpStatus.CREATED) {
+            System.out.println("Request Successful");
+            System.out.println(response.getBody());
+        } else {
+            System.out.println("Request Failed");
+            System.out.println(response.getStatusCode());
+        }
         return "redirect:/users";
     }
 
@@ -120,9 +126,6 @@ public class UserController {
         return modelAndView;
     }
 */
-
-
-
 
     @RequestMapping("/")
     @ResponseBody
