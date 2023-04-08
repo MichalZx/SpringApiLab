@@ -15,9 +15,6 @@
 <input type="button"  onclick="album()" value="Search for album" ><br/>
 <input type="button"  onclick="window.location.href='http://localhost:8080/useradd';" value="Add user" ><br/><br>
 <form action="#" th:action="@{/addUser}" method="post" th:object="${user}" for="user">
-    <label>Id:</label>
-    <input type="number" field="*{id}" name="id" required><br>
-
     <label>Name:</label>
     <input type="text" field="*{name}" name="name" required><br>
 
@@ -61,11 +58,65 @@
     <input type="text" field="*{company.bs}" name="company.bs" required><br>
     <button type="submit">Add User</button>
 </form>
+<br>
+<h3>  Edytu urzytkownika:</h3>
+<form th:action="@{/users}" th:object="${user}" method="post" id="editusr">
+    <label>Id:</label>
+    <input type="number" field="*{id}" id="id" name="id" required><br>
 
+    <label>Name:</label>
+    <input type="text" field="*{name}" name="name" ><br>
 
+    <label>User Name:</label>
+    <input type="text" field="*{username}" name="username" ><br>
+
+    <label>Email:</label>
+    <input type="email" field="*{email}" name="email" ><br>
+
+    <label>Phone:</label>
+    <input type="tel" field="*{phone}" name="phone" ><br>
+
+    <label >website:</label>
+    <input type="text" field="*{website}" name="website" ><br>
+
+    <label>address, streeet:</label>
+    <input type="text" field="*{address.street}" name="address.street" ><br>
+
+    <label>Address, suite:</label>
+    <input type="text" field="*{address.suite}" name="address.suite" ><br>
+
+    <label>Address, city:</label>
+    <input type="text" field="*{address.city}" name="address.city" ><br>
+
+    <label>Address, zipcode:</label>
+    <input type="text" field="*{address.zipcode}" name="address.zipcode" ><br>
+
+    <label>Address, geo, lat:</label>
+    <input type="text" field="*{address.geo.lat}" name="address.geo.lat" ><br>
+
+    <label>Address, geo, lng:</label>
+    <input type="text" field="*{address.geo.lng}" name="address.geo.lng" ><br>
+
+    <label>company, name:</label>
+    <input type="text" field="*{company.name}" name="company.name" ><br>
+
+    <label>company, catchPhrase:</label>
+    <input type="text" field="*{company.catchPhrase}" name="company.catchPhrase" ><br>
+
+    <label>company, bs:</label>
+    <input type="text" field="*{company.bs}" name="company.bs" ><br>
+    <button type="submit">Edit User</button>
+</form>
 
 </body>
-<script>
+<script type="text/javascript">
+document.getElementById("editusr").addEventListener("submit", function(e) {
+    e.preventDefault();
+    var id = document.getElementById("id").value;
+    var form = document.getElementById("editusr");
+    form.action = "/users/" + id;
+    form.submit();
+});
           function user(){
           var id =document.getElementById("user_id").value;
           if(id==0) window.open("http://localhost:8080/users", "_self");

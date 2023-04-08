@@ -88,6 +88,46 @@ public class UserController {
         }
         return "redirect:/users";
     }
+/*
+    @PostMapping("/users/{id}")
+    public String editUser(@PathVariable Integer id, User user) {
+        String uri = "https://jsonplaceholder.typicode.com/users/" + id;
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.put(uri, user);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        HttpEntity<User> request = new HttpEntity<>(user, headers);
+        if (request. HttpStatus.OK) {
+            System.out.println("Request Successful");
+            System.out.println(request.getBody());
+        } else {
+            System.out.println("Request Failed");
+            System.out.println(restTemplate.getClass());
+        }
+        return "redirect:/users";
+    }
+    */
+/**/
+    @PostMapping("/users/{id}")
+    public String editUser(@PathVariable("id") int id, @ModelAttribute User user) {
+        System.out.println("zmiana dotyczy urzytkownika o id: "+id);
+        RestTemplate restTemplate = new RestTemplate();
+        String uri = "https://jsonplaceholder.typicode.com/users/" + id;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<User> requestEntity = new HttpEntity<>(user, headers);
+        ResponseEntity<User> responseEntity = restTemplate.exchange(uri, HttpMethod.PUT, requestEntity, User.class);
+        System.out.println("Status code: "+responseEntity.getStatusCode());
+        if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
+            System.out.println("Request Successful");
+            //System.out.println(requestEntity.getBody());
+        } else {
+            System.out.println("Request Failed");
+            System.out.println(responseEntity.getStatusCode());
+        }
+        return "redirect:/users";
+    }
 
     @GetMapping("/users")
     public String getUsersList(Model model) {
