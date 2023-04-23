@@ -41,7 +41,7 @@
 </div>
 <div>
     <h3>Delete this User:</h3>
-    <form th:action="@{/users/user1.id}" th:object="${user}" method="delete" id="delusr">
+    <form th:action="@{/users/del/11}" th:object="${user}" method="GET" id="delusr">
         <label>Id:</label>
         <input type="number" th:value="${user1.id}" id="id" name="id"><br>
         <button type="submit">Delete this user</button>

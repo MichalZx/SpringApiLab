@@ -99,7 +99,7 @@ public class UserController {
 /**/
     @PostMapping("/users/{id}")
     public String editUser(@PathVariable("id") int id, @ModelAttribute User user) {
-        System.out.println("zmiana dotyczy urzytkownika o id: "+id);
+        System.out.println("editing user with id: "+id);
         RestTemplate restTemplate = new RestTemplate();
         String uri = "https://jsonplaceholder.typicode.com/users/" + id;
         HttpHeaders headers = new HttpHeaders();
@@ -126,17 +126,20 @@ public class UserController {
         return "users";
     }
 
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
+    @GetMapping("/users/del/{id}") // deleting
+    public String deleteUser(@PathVariable Integer id) {
         String uri = "https://jsonplaceholder.typicode.com/users/" + id;
         RestTemplate restTemplate = new RestTemplate();
+        //User user = restTemplate.delete(uri);
 
         try {
             restTemplate.delete(uri);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            System.out.println("Request Successful");
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            System.out.println("Request Failed");
+            //System.out.println(responseEntity.getStatusCode());
         }
+        return "redirect:/users";
     }
 
 /*
