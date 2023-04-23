@@ -39,6 +39,13 @@
         <div class="left" th:text="${company1.name + ', ' + company1.bs}"></div>
     </div>
 </div>
-
+<div>
+    <h3>Delete this User:</h3>
+    <form th:action="@{/users/user1.id}" th:object="${user}" method="delete" id="delusr">
+        <label>Id:</label>
+        <input type="number" th:value="${user1.id}" id="id" name="id"><br>
+        <button type="submit">Delete this user</button>
+    </form>
+</div>
 </body>
 </html>

@@ -5,6 +5,7 @@
     <title>This is main page</title>
 </head>
 <body>
+<p>this site is still under construction</p>
 <h1>Please select a user id and press button</h1>
 <p>*hint: type id '0' lo list all resource</p>
 <label>User ID: </label>
@@ -14,6 +15,7 @@
 <input type="number" id="album_id" value="1">
 <input type="button"  onclick="album()" value="Search for album" ><br/>
 <input type="button"  onclick="window.location.href='http://localhost:8080/useradd';" value="Add user" ><br/><br>
+<h3>Create User:</h3>
 <form action="#" th:action="@{/addUser}" method="post" th:object="${user}">
     <label>Name:</label>
     <input type="text" field="*{name}" name="name" required><br>
@@ -46,7 +48,7 @@
     <button type="submit">Add User</button>
 </form>
 <br>
-<h3>Edytuj urzytkownika:</h3>
+<h3>Edit User:</h3>
 <form th:action="@{/users}" th:object="${user}" method="post" id="editusr">
     <label>Id:</label>
     <input type="number" field="*{id}" id="id" name="id" required><br>
