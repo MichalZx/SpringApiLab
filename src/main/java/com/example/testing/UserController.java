@@ -22,12 +22,10 @@ public class UserController {
     private ModelAndView getUser(@PathVariable Integer id, Model model)   {
         String uri = "https://jsonplaceholder.typicode.com/users/" + id;
         RestTemplate restTemplate = new RestTemplate();
-
         User user = restTemplate.getForObject(uri, User.class);
         Address address = user.getAddress();
         Geo geo = address.getGeo();
         Company company = user.getCompany();
-
         ModelAndView modelAndView = new ModelAndView("user");
         modelAndView.addObject("user1", user);
         modelAndView.addObject("address1", address);
@@ -37,11 +35,10 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping("/albums/{id}")    //DZIALA MADA FAKA
+    @RequestMapping("/albums/{id}")
     private ModelAndView  getAlbums(@PathVariable Integer id, Model model) {
         String uri = "https://jsonplaceholder.typicode.com/users/"+id+"/albums?_start=0&_limit=5";
         RestTemplate restTemplate = new RestTemplate();
-
         Album[] album= restTemplate.getForObject(uri, Album[].class);
         System.out.println("User: " + album);
         Album al1 = album[0];
@@ -55,26 +52,18 @@ public class UserController {
         modelAndView.addObject("album3",al3);
         modelAndView.addObject("album4",al4);
         modelAndView.addObject("album5",al5);
-
         System.out.println(album[0].getUserId());
         System.out.println(al1.getTitle());
         return modelAndView;
     }
 
-    @PostMapping("/addUser") //dodajmy urzytkownika
+    @PostMapping("/addUser") //adding user
     public String addUser(@ModelAttribute("user") User user) {
         RestTemplate restTemplate = new RestTemplate();
-
-        /*
-        User myuser = new User();
-        myuser=user;
-*/
-
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         HttpEntity<User> request = new HttpEntity<>(user, headers);
-
         String uri = "https://jsonplaceholder.typicode.com/users";
         ResponseEntity<String> response = restTemplate.postForEntity(uri, request, String.class);
         //restTemplate.postForEntity(uri, request, String.class);
@@ -110,7 +99,7 @@ public class UserController {
 /**/
     @PostMapping("/users/{id}")
     public String editUser(@PathVariable("id") int id, @ModelAttribute User user) {
-        System.out.println("zmiana dotyczy urzytkownika o id: "+id);
+        System.out.println("editing user with id: "+id);
         RestTemplate restTemplate = new RestTemplate();
         String uri = "https://jsonplaceholder.typicode.com/users/" + id;
         HttpHeaders headers = new HttpHeaders();
@@ -135,6 +124,22 @@ public class UserController {
         User[] users = restTemplate.getForObject(uri, User[].class);
         model.addAttribute("users", users);
         return "users";
+    }
+
+    @GetMapping("/users/del/{id}") // deleting
+    public String deleteUser(@PathVariable Integer id) {
+        String uri = "https://jsonplaceholder.typicode.com/users/" + id;
+        RestTemplate restTemplate = new RestTemplate();
+        //User user = restTemplate.delete(uri);
+
+        try {
+            restTemplate.delete(uri);
+            System.out.println("Request Successful");
+        } catch (Exception e) {
+            System.out.println("Request Failed");
+            //System.out.println(responseEntity.getStatusCode());
+        }
+        return "redirect:/users";
     }
 
 /*
