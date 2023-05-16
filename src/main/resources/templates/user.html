@@ -38,14 +38,27 @@
         <div class="left">Company: </div>
         <div class="left" th:text="${company1.name + ', ' + company1.bs}"></div>
     </div>
-</div>
+</div><br>
 <div>
     <h3>Delete this User:</h3>
     <form th:action="@{/users/del/11}" th:object="${user}" method="GET" id="delusr">
-        <label>Id:</label>
-        <input type="number" th:value="${user1.id}" id="id" name="id"><br>
+        <input type="hidden" th:value="${user1.id}" id="id" name="id"><br>
         <button type="submit">Delete this user</button>
     </form>
 </div>
+<div>
+    <h3>Show albums</h3>
+    <form th:object="${user}" method="GET" id="albums">
+    <input type="hidden" id="album_id" th:value="${user1.id}">
+    <input type="button"  onclick="album()" value="Search for album" ><br/>
+    </form>
+</div>
 </body>
+<script>
+    function album(){
+          var id =document.getElementById("album_id").value;
+          if(id==0) window.open("http://localhost:8080/albums", "_self");
+          else window.open("http://localhost:8080/albums/"+id, "_self");
+          }
+</script>
 </html>
