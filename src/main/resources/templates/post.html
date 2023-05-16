@@ -1,0 +1,63 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Post page</title>
+  <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<input type="button"  onclick="location.href='http://localhost:8080/main'" value="Go to the main page"><br/>
+<h1>List of Posts of user details</h1>
+<div class = "main_container">
+  <div class="row">
+    <div class="left">User Id:</div>
+    <div class="left" th:text="${post1.userId}"></div><br/>
+    <div class="left">Post Id:</div>
+    <div class="left" th:text="${post1.id}"></div><br/>
+    <div class="left">Title: </div>
+    <div class="left" th:text="${post1.title}"></div><br/>
+    <div class="left">Body: </div>
+    <div class="left" th:text="${post1.body}"></div><br/>
+  </div><br/>
+  <div class="row">
+    <div class="left">User Id:</div>
+    <div class="left" th:text="${post2.userId}"></div><br/>
+    <div class="left">Post Id:</div>
+    <div class="left" th:text="${post2.id}"></div><br/>
+    <div class="left">Title: </div>
+    <div class="left" th:text="${post2.title}"></div><br/>
+    <div class="left">Body: </div>
+    <div class="left" th:text="${post2.body}"></div><br/>
+  </div><br/>
+  <div class="row">
+    <div class="left">User Id:</div>
+    <div class="left" th:text="${post3.userId}"></div><br/>
+    <div class="left">Post Id:</div>
+    <div class="left" th:text="${post3.id}"></div><br/>
+    <div class="left">Title: </div>
+    <div class="left" th:text="${post3.title}"></div><br/>
+    <div class="left">Body: </div>
+    <div class="left" th:text="${post3.body}"></div><br/>
+  </div><br/>
+  <div class="row">
+    <div class="left">User Id:</div>
+    <div class="left" th:text="${post4.userId}"></div><br/>
+    <div class="left">Post Id:</div>
+    <div class="left" th:text="${post4.id}"></div><br/>
+    <div class="left">Title: </div>
+    <div class="left" th:text="${post4.title}"></div><br/>
+    <div class="left">Body: </div>
+    <div class="left" th:text="${post4.body}"></div><br/>
+  </div><br/>
+  <div class="row">
+    <div class="left">User Id:</div>
+    <div class="left" th:text="${post5.userId}"></div><br/>
+    <div class="left">Post Id:</div>
+    <div class="left" th:text="${post5.id}"></div><br/>
+    <div class="left">Title: </div>
+    <div class="left" th:text="${post5.title}"></div><br/>
+    <div class="left">Body: </div>
+    <div class="left" th:text="${post5.body}"></div><br/>
+  </div><br/>
+</div>
+
+</body>
+</html>

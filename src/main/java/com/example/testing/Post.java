@@ -1,9 +1,10 @@
 package com.example.testing;
 
-public class Album {
+public class Post {
     private Integer userId;
     private Integer id;
     private String title;
+    private String body;
 
     public Integer getUserId() {
         return userId;
@@ -22,5 +23,11 @@ public class Album {
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+    public String getBody() {
+        return body;
+    }
+    public void setBody(String title) {
+        this.body = body;
     }
 }

@@ -76,6 +76,29 @@ public class UserController {
         }
         return "redirect:/users";
     }
+
+    @GetMapping("/users/{id}/posts")
+    private ModelAndView  getPost(@PathVariable Integer id, Model model) {
+        String uri = "https://jsonplaceholder.typicode.com/users/"+id+"/posts?_start=0&_limit=5";
+        RestTemplate restTemplate = new RestTemplate();
+        Post[] post= restTemplate.getForObject(uri, Post[].class);
+        System.out.println("User: " + post);
+        Post po1 = post[0];
+        Post po2 = post[1];
+        Post po3 = post[2];
+        Post po4 = post[3];
+        Post po5 = post[4];
+        ModelAndView modelAndView=new ModelAndView("post");
+        modelAndView.addObject("post1",po1);
+        modelAndView.addObject("post2",po2);
+        modelAndView.addObject("post3",po3);
+        modelAndView.addObject("post4",po4);
+        modelAndView.addObject("post5",po5);
+        System.out.println(post[0].getUserId());
+        System.out.println(po1.getTitle());
+        System.out.println(po1.getBody());
+        return modelAndView;
+    }
 /*
     @PostMapping("/users/{id}")
     public String editUser(@PathVariable Integer id, User user) {

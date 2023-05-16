@@ -42,10 +42,36 @@
 <div>
     <h3>Delete this User:</h3>
     <form th:action="@{/users/del/11}" th:object="${user}" method="GET" id="delusr">
-        <label>Id:</label>
-        <input type="number" th:value="${user1.id}" id="id" name="id"><br>
+        <input type="hidden" th:value="${user1.id}" id="id" name="id"><br>
         <button type="submit">Delete this user</button>
     </form>
 </div>
+<div>
+    <h3>Show albums:</h3>
+<input type="hidden" id="album_id" th:value="${user1.id}">
+<input type="button"  onclick="album()" value="Search for albums" ><br/>
+</div>
+<br>
+<div>
+    <form th:action="@{/users}"  method="get" id="showposts">
+    <h3>Show posts:</h3>
+    <input type="hidden" id="post_id" th:value="${user1.id}">
+        <button type="submit">Serach for posts</button>
+    </form>
+</div>
 </body>
+<script>
+    function album(){
+          var id =document.getElementById("album_id").value;
+          if(id==0) window.open("http://localhost:8080/albums", "_self");
+          else window.open("http://localhost:8080/albums/"+id, "_self");
+          }
+    document.getElementById("showposts").addEventListener("submit", function(e) {
+    e.preventDefault();
+    var id = document.getElementById("post_id").value;
+    var form = document.getElementById("showposts");
+    form.action = "/users/" + id + "/posts";
+    form.submit();
+});
+</script>
 </html>
