@@ -40,7 +40,7 @@ public class UserController {
         String uri = "https://jsonplaceholder.typicode.com/users/"+id+"/albums?_start=0&_limit=5";
         RestTemplate restTemplate = new RestTemplate();
         Album[] album= restTemplate.getForObject(uri, Album[].class);
-        System.out.println("User: " + album);
+        System.out.println("Album: " + album);
         Album al1 = album[0];
         Album al2 = album[1];
         Album al3 = album[2];
@@ -82,7 +82,7 @@ public class UserController {
         String uri = "https://jsonplaceholder.typicode.com/users/"+id+"/posts?_start=0&_limit=5";
         RestTemplate restTemplate = new RestTemplate();
         Post[] post= restTemplate.getForObject(uri, Post[].class);
-        System.out.println("User: " + post);
+        System.out.println("Post: " + post);
         Post po1 = post[0];
         Post po2 = post[1];
         Post po3 = post[2];
@@ -95,8 +95,27 @@ public class UserController {
         modelAndView.addObject("post4",po4);
         modelAndView.addObject("post5",po5);
         System.out.println(post[0].getUserId());
-        System.out.println(po1.getTitle());
-        System.out.println(po1.getBody());
+        return modelAndView;
+    }
+
+    @GetMapping("/users/{id}/todos")
+    private ModelAndView  getTodos(@PathVariable Integer id, Model model) {
+        String uri = "https://jsonplaceholder.typicode.com/users/"+id+"/todos?_start=0&_limit=5";
+        RestTemplate restTemplate = new RestTemplate();
+        Todos[] todos= restTemplate.getForObject(uri, Todos[].class);
+        System.out.println("Todos: " + todos);
+        Todos td1 = todos[0];
+        Todos td2 = todos[1];
+        Todos td3 = todos[2];
+        Todos td4 = todos[3];
+        Todos td5 = todos[4];
+        ModelAndView modelAndView=new ModelAndView("todos");
+        modelAndView.addObject("todos1",td1);
+        modelAndView.addObject("todos2",td2);
+        modelAndView.addObject("todos3",td3);
+        modelAndView.addObject("todos4",td4);
+        modelAndView.addObject("todos5",td5);
+        System.out.println(todos[0].getUserId());
         return modelAndView;
     }
 /*
@@ -165,45 +184,11 @@ public class UserController {
         return "redirect:/users";
     }
 
-/*
-    @RequestMapping("/albums/{id}")
-    private ModelAndView getAlbum(@PathVariable Integer id)   {
-        String uri = "https://jsonplaceholder.typicode.com/albums/"+id ;
-        RestTemplate restTemplate = new RestTemplate();
-
-        Album album = restTemplate.getForObject(uri, Album.class);
-
-        ModelAndView modelAndView = new ModelAndView("album");
-        modelAndView.addObject("album",album);
-
-        return modelAndView;
-    }
-
-    @RequestMapping("user/{id}/albums")
-    private ModelAndView getAlbums(@PathVariable Integer id)   {
-        // https://jsonplaceholder.typicode.com/users/1/albums?_start=0&_limit=5
-        String uri = "https://jsonplaceholder.typicode.com/users/"+id+"/albums?_start=0&_limit=5" ;
-        RestTemplate restTemplate = new RestTemplate();
-
-        Albums albums = restTemplate.getForObject(uri, Albums.class);
-
-        ModelAndView modelAndView = new ModelAndView("albums");
-        modelAndView.addObject("albums",albums);
-
-        return modelAndView;
-    }
-*/
-
     @RequestMapping("/")
     @ResponseBody
     private String test2() {
-        String uri = "https://jsonplaceholder.typicode.com/users/1/albums?_start=0&_limit=5";
-        RestTemplate restTemplate = new RestTemplate();
-
-        Albums[] albums = restTemplate.getForObject(uri, Albums[].class);
-        System.out.println("Albums: " + albums);
-
-        return "Albums2 detail page.";
+        main();
+        return "Hello world! but go to /main :)";
     }
 
     @RequestMapping("/hello")

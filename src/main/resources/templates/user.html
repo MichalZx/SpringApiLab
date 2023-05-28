@@ -59,6 +59,13 @@
         <button type="submit">Serach for posts</button>
     </form>
 </div>
+<div>
+    <form th:action="@{/users}"  method="get" id="showtodos">
+        <h3>Show todos:</h3>
+        <input type="hidden" id="todos_id" th:value="${user1.id}">
+        <button type="submit">Serach for todos</button>
+    </form>
+</div>
 </body>
 <script>
     function album(){
@@ -72,6 +79,14 @@
     var form = document.getElementById("showposts");
     form.action = "/users/" + id + "/posts";
     form.submit();
-});
+    });
+
+    document.getElementById("showtodos").addEventListener("submit", function(e) {
+    e.preventDefault();
+    var id = document.getElementById("todos_id").value;
+    var form = document.getElementById("showtodos");
+    form.action = "/users/" + id + "/todos";
+    form.submit();
+    });
 </script>
 </html>

@@ -1,10 +1,10 @@
 package com.example.testing;
 
-public class Post {
+public class Todos {
     private Integer userId;
     private Integer id;
     private String title;
-    private String body;
+    private Boolean completed;
 
     public Integer getUserId() {
         return userId;
@@ -24,10 +24,10 @@ public class Post {
     public void setTitle(String title) {
         this.title = title;
     }
-    public String getBody() {
-        return body;
+    public Boolean getCompleted() {
+        return completed;
     }
-    public void setBody(String body) {
-        this.body = body;
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
     }
 }

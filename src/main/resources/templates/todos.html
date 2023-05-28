@@ -1,0 +1,63 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Todos page</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<input type="button"  onclick="location.href='http://localhost:8080/main'" value="Go to the main page"><br/>
+<h1>List of top 5 Todos form the user</h1>
+<div class = "main_container">
+    <div class="row">
+        <div class="left">User Id:</div>
+        <div class="left" th:text="${todos1.userId}"></div><br/>
+        <div class="left">Todo Id:</div>
+        <div class="left" th:text="${todos1.id}"></div><br/>
+        <div class="left">Title: </div>
+        <div class="left" th:text="${todos1.title}"></div><br/>
+        <div class="left">Is it completed?: </div>
+        <div class="left" th:text="${todos1.completed}"></div><br/>
+    </div><br/>
+    <div class="row">
+        <div class="left">User Id:</div>
+        <div class="left" th:text="${todos2.userId}"></div><br/>
+        <div class="left">Todo Id:</div>
+        <div class="left" th:text="${todos2.id}"></div><br/>
+        <div class="left">Title: </div>
+        <div class="left" th:text="${todos2.title}"></div><br/>
+        <div class="left">Is it completed?: </div>
+        <div class="left" th:text="${todos2.completed}"></div><br/>
+    </div><br/>
+    <div class="row">
+        <div class="left">User Id:</div>
+        <div class="left" th:text="${todos3.userId}"></div><br/>
+        <div class="left">Todo Id:</div>
+        <div class="left" th:text="${todos3.id}"></div><br/>
+        <div class="left">Title: </div>
+        <div class="left" th:text="${todos3.title}"></div><br/>
+        <div class="left">Is it completed?: </div>
+        <div class="left" th:text="${todos3.completed}"></div><br/>
+    </div><br/>
+    <div class="row">
+        <div class="left">User Id:</div>
+        <div class="left" th:text="${todos4.userId}"></div><br/>
+        <div class="left">Todo Id:</div>
+        <div class="left" th:text="${todos4.id}"></div><br/>
+        <div class="left">Title: </div>
+        <div class="left" th:text="${todos4.title}"></div><br/>
+        <div class="left">Is it completed?: </div>
+        <div class="left" th:text="${todos4.completed}"></div><br/>
+    </div><br/>
+    <div class="row">
+        <div class="left">User Id:</div>
+        <div class="left" th:text="${todos5.userId}"></div><br/>
+        <div class="left">Todo Id:</div>
+        <div class="left" th:text="${todos5.id}"></div><br/>
+        <div class="left">Title: </div>
+        <div class="left" th:text="${todos5.title}"></div><br/>
+        <div class="left">Is it completed?: </div>
+        <div class="left" th:text="${todos5.completed}"></div><br/>
+    </div><br/>
+</div>
+
+</body>
+</html>
