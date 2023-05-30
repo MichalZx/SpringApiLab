@@ -14,34 +14,34 @@
 <h3>Create User:</h3>
 <form action="#" th:action="@{/addUser}" method="post" th:object="${user}">
     <label>Name:</label>
-    <input type="text" field="*{name}" name="name" required><br>
+    <input type="text" field="*{name}" name="name" id="create_name" required><br>
     <label>User Name:</label>
-    <input type="text" field="*{username}" name="username" required><br>
+    <input type="text" field="*{username}" name="username" id="create_username" required><br>
     <label>Email:</label>
-    <input type="email" field="*{email}" name="email" required><br>
+    <input type="email" field="*{email}" name="email" id="create_email" required><br>
     <label>Phone:</label>
-    <input type="tel" field="*{phone}" name="phone" required><br>
+    <input type="tel" field="*{phone}" name="phone" id="create_phone" required><br>
     <label >website:</label>
-    <input type="text" field="*{website}" name="website" required><br>
+    <input type="text" field="*{website}" name="website" id="create_website" required><br>
     <label>address, streeet:</label>
-    <input type="text" field="*{address.street}" name="address.street" required><br>
+    <input type="text" field="*{address.street}" name="address.street" id="create_address_street" required><br>
     <label>Address, suite:</label>
-    <input type="text" field="*{address.suite}" name="address.suite" required><br>
+    <input type="text" field="*{address.suite}" name="address.suite" id="create_address_suite" required><br>
     <label>Address, city:</label>
-    <input type="text" field="*{address.city}" name="address.city" required><br>
+    <input type="text" field="*{address.city}" name="address.city" id="create_address_city" required><br>
     <label>Address, zipcode:</label>
-    <input type="text" field="*{address.zipcode}" name="address.zipcode" required><br>
+    <input type="text" field="*{address.zipcode}" name="address.zipcode" id="create_address_zipcode" required><br>
     <label>Address, geo, lat:</label>
-    <input type="text" field="*{address.geo.lat}" name="address.geo.lat" required><br>
+    <input type="text" field="*{address.geo.lat}" name="address.geo.lat" id="create_address_geo_lat" required><br>
     <label>Address, geo, lng:</label>
-    <input type="text" field="*{address.geo.lng}" name="address.geo.lng" required><br>
+    <input type="text" field="*{address.geo.lng}" name="address.geo.lng" id="create_address_geo_lng" required><br>
     <label>company, name:</label>
-    <input type="text" field="*{company.name}" name="company.name" required><br>
+    <input type="text" field="*{company.name}" name="company.name" id="create_company_name" required><br>
     <label>company, catchPhrase:</label>
-    <input type="text" field="*{company.catchPhrase}" name="company.catchPhrase" required><br>
+    <input type="text" field="*{company.catchPhrase}" name="company.catchPhrase" id="create_company_catchPhrase" required><br>
     <label>company, bs:</label>
-    <input type="text" field="*{company.bs}" name="company.bs" required><br>
-    <button type="submit">Add User</button>
+    <input type="text" field="*{company.bs}" name="company.bs" id="create_company_bs" required><br>
+    <button type="submit" id="create_submit">Add User</button>
 </form>
 <br>
 <h3>Edit User:</h3>
