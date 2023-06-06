@@ -59,5 +59,22 @@
   </div><br/>
 </div>
 
+<br>
+<div>
+  <form th:action="@{/posts}"  method="get" id="showcomments">
+    <h3>Select post Id:</h3>
+    <input type="number" id="post_id" th:value="${post1.id}">
+    <button type="submit">Serach for comments</button>
+  </form>
+</div>
 </body>
+<script>
+    document.getElementById("showcomments").addEventListener("submit", function(e) {
+    e.preventDefault();
+    var id = document.getElementById("post_id").value;
+    var form = document.getElementById("showcomments");
+    form.action = "/posts/" + id + "/comments";
+    form.submit();
+    });
+</script>
 </html>

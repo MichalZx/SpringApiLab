@@ -118,6 +118,15 @@ public class UserController {
         System.out.println(todos[0].getUserId());
         return modelAndView;
     }
+
+    @GetMapping("/posts/{id}/comments")
+    public String getPostsList(@PathVariable Integer id, Model model) {
+        String uri = "https://jsonplaceholder.typicode.com/posts/" +id+"/comments";
+        RestTemplate restTemplate = new RestTemplate();
+        Comments[] comments = restTemplate.getForObject(uri, Comments[].class);
+        model.addAttribute("comments", comments);
+        return "comments";
+    }
 /*
     @PostMapping("/users/{id}")
     public String editUser(@PathVariable Integer id, User user) {

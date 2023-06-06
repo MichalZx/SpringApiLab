@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Comments List</title>
+  <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<input type="button"  onclick="location.href='http://localhost:8080/main'" value="Go to the main page"><br/>
+<h1>Comments</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Body</th>
+  </tr>
+  </thead>
+  <tbody>
+  <th:block th:each="comments : ${comments}">
+    <tr>
+      <td th:text="${comments.id}"></td>
+      <td th:text="${comments.name}"></td>
+      <td th:text="${comments.email}"></td>
+      <td th:text="${comments.body}"></td>
+    </tr>
+  </th:block>
+  </tbody>
+</table>
+</body>
+</html>
